@@ -1,0 +1,122 @@
+/******************************************
+*  Author : Mhande Amalou   
+*  Created On : Tue Jul 19 2022
+*  File : style.scss
+*******************************************/
+
+// :root{
+
+// }
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0%;
+  padding: 0%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+.sr-only {
+  display: none;
+}
+
+.home {
+  background-image: url(../assets/images/nasa-Q1p7bh3SHj8-unsplash.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+//primary navigatin
+
+.logo {
+  margin: 2rem;
+}
+
+.primary-header {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+.primary-navigation {
+  background-color: hsl(0, 0%, 0%, 0.7);
+}
+
+@supports (backdrop-filter: blur(1rem)) {
+  .primary-navigation {
+    background-color: hsl(0, 0%, 100%, 0.1);
+    backdrop-filter: blur(1rem);
+  }
+}
+
+.primary-navigation a {
+  color: white;
+}
+.primary-navigation a > [aria-hidden="true"] {
+  margin-inline-end: 0.75em;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 35em) {
+  .primary-navigation {
+    --gap: 2em;
+    position: fixed;
+    z-index: 1000;
+    inset: 0 0 0 30%;
+    flex-direction: column;
+    padding: min(30vh, 10rem) 2rem;
+    transform: translateX(100%);
+    transition: transform 200ms ease-out;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    background: transparent center/cover url(../assets/images/icon-menu.svg)
+      no-repeat;
+    top: 2rem;
+    right: 2rem;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border: none;
+  }
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background: transparent center/cover
+      url(../assets/images/icon-close-menu.svg) no-repeat;
+  }
+
+  .primary-navigation[data-visible="true"] {
+    transform: translateX(0%);
+  }
+}
+
+@media (min-width: 35em) and (max-width: 55em) {
+  .primary-navigation a > span[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+@media (min-width: 35em) {
+  .primary-navigation {
+    --gap: 2rem;
+    padding-block: 1.7rem;
+    padding-inline: clamp(3rem,10vw,10rem);
+  }
+}
